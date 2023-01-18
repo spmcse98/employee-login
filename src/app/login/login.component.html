@@ -1,0 +1,65 @@
+<div class="h-100 gradient-form">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10 h">
+        <div class="card rounded-3 text-black ">
+          <div class="row g-0 h-100 d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 ">
+              <div class="card-body p-md-5 mx-md-4 ">
+
+
+                <form *ngIf="signins" (ngSubmit)="signin();" #signinforms="ngForm" ngNativeValidate autocomplete="off">
+
+                  <h5>Sign in</h5>
+
+                  <div class="form-group mb-4 mt-4 mail">
+                    <label class="form-label" for="email">Email</label>
+                    <span class="material-icons"> mail </span>
+                    <input class="form-control" minlength="4" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                      appForbiddenName="bob" type="email" #email="ngModel" [(ngModel)]="signinform.email"
+                      placeholder="Enter email" name="email" required>
+
+                      <p *ngIf="email_invalid" class=" pt-1" style="color: #0078D4;;">* Email Invalid</p>
+                  </div>
+
+                  <div class="form-group mb-4 mt-4 pass">
+                    <label class="form-label" for="pwd">Password</label><br>
+                    <input class="form-control" name="password" [type]="signinform.input_txt? 'text': 'password'" #password="ngModel"
+                      [(ngModel)]="signinform.password" placeholder="Enter Password" required>
+
+                    <a (click)="onClick()">
+                      <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="!signinform.input_txt" (click)="signinform.input_txt = !signinform.input_txt" aria-hidden="true" style="color: #0078D4;"></i>
+                      <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="signinform.input_txt" (click)="signinform.input_txt = !signinform.input_txt" aria-hidden="true"></i>
+                    </a>
+
+                    <p *ngIf="password_invalid" class="pt-1" style="color: #0078D4;;">* Password Invalid</p>
+                  </div>
+
+                  <!-- <div class="text-center pt-1 mb-2 pb-1 reset">
+                    <a class="text pointer" (click)="reset(signinforms)">Reset password?</a>
+                  </div> -->
+
+                  <p *ngIf="active_account" class="" style="color: #0078D4;">* Go to email and Active your account</p>
+                  <div class=" col-md-12 text-center pt-1 mb-5 pb-1 sub"> 
+                    <button type="submit" [disabled]="signinform.submit"
+                      class="btn btn-light">Login</button>
+
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4 sign">
+                    <p class="mb-0 me-2">New here?</p>
+                    <button type="button" class="btn btn-light" routerLink="/signup">Sign up</button>
+                  </div>
+
+                </form>
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
